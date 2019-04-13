@@ -25,3 +25,26 @@ button {
   background-color: #222;
   color: white;
 }
+
+
+
+
+
+
+#twitter-form {
+  position: relative !important;
+  top: 30vh !important;
+}
+
+.route-wrapper {
+  position: relative;
+}
+
+.route-wrapper > div {
+  position: absolute;
+}
+
+#gradient {
+  width: 100vw;
+  height: 100vh;
+}
