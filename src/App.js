@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { AppConfig } from 'blockstack'
 import { UserSession } from 'blockstack'
 import { lookupProfile } from 'blockstack'
-import { User } from 'radiks'
 import './App.css';
 import UserInfo from './UserInfo';
 const blockstack = require('blockstack');
@@ -33,12 +32,10 @@ class App extends Component {
     const { userSession } = this.state
 
     if (userSession.isUserSignedIn()) {
-      await User.createWithCurrentUser()
       return true;
     } else if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(async(userData) => {
         window.location = window.location.origin
-        await User.createWithCurrentUser()
       })
       return false;
     }
@@ -63,17 +60,9 @@ class App extends Component {
     blockstack.signUserOut(window.location.href)
   }
 
-  fetchUsers = async () => {
-    const result = await User.fetchList()
-    console.log(result)
-  }
-
   render() {
     return (
       <div className="App">
-        <button onClick={this.fetchUsers}>
-          User Fetch List
-        </button>
         <header className="App-header">
           <h1 className="App-title">Blockstack Create React App</h1>
         </header>
