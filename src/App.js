@@ -1,45 +1,54 @@
 import React, { Component } from 'react';
-
+import { AppConfig } from 'blockstack'
+import { UserSession, appConfig } from 'blockstack'
+import { lookupProfile } from 'blockstack'
+import { User } from 'radiks'
 import './App.css';
-
 import UserInfo from './UserInfo';
-
 const blockstack = require('blockstack');
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    let isSignedIn = this.checkSignedInStatus();
-
     this.state = {
-      isSignedIn,
-      person: undefined
-    }
-
-    if(isSignedIn) {
-      this.loadPerson();
+      person: undefined,
+      userSession: new UserSession({ appConfig: new AppConfig(['store_write', 'publish_data'])})
     }
 
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
   }
 
-  checkSignedInStatus() {
-    if (blockstack.isUserSignedIn()) {
+  componentDidMount = async () => {
+    let isSignedIn = await this.checkSignedInStatus();
+    if (isSignedIn) {
+      this.loadPerson();
+    }
+
+    this.setState({ isSignedIn })
+  }
+
+  checkSignedInStatus = async () => {
+    const { userSession } = this.state
+
+    if (userSession.isUserSignedIn()) {
+      await User.createWithCurrentUser()
       return true;
-    } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn().then(function(userData) {
+    } else if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(async(userData) => {
         window.location = window.location.origin
+        await User.createWithCurrentUser()
       })
       return false;
     }
   }
 
-  loadPerson() {
-    let username = blockstack.loadUserData().username
+  loadPerson = async () => {
+    const { userSession } = this.state
+    let username = userSession.loadUserData()
 
-    blockstack.lookupProfile(username).then((person) => {
+    await lookupProfile(username).then((person) => {
       this.setState({ person })
     })
   }
@@ -54,9 +63,17 @@ class App extends Component {
     blockstack.signUserOut(window.location.href)
   }
 
+  fetchUsers = async () => {
+    const result = await User.fetchList()
+    console.log(result)
+  }
+
   render() {
     return (
       <div className="App">
+        <button onClick={this.fetchUsers}>
+          User Fetch List
+        </button>
         <header className="App-header">
           <h1 className="App-title">Blockstack Create React App</h1>
         </header>
