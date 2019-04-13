@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppConfig } from 'blockstack'
-import { UserSession, appConfig } from 'blockstack'
+import { UserSession } from 'blockstack'
 import { lookupProfile } from 'blockstack'
 import { User } from 'radiks'
 import './App.css';
