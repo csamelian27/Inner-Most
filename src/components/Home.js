@@ -15,7 +15,7 @@ class Home extends React.Component {
 
   handleSubmit = () => {
     console.log('bob', this.state.username);
-      fetch(`https://cors-anywhere.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline/${this.state.username}.json?`,
+      fetch(`https://cors-anywhere.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline/${this.state.username}.json?count=2`,
       {
         method: "GET",
         headers: {
@@ -25,7 +25,7 @@ class Home extends React.Component {
         this.setState({
           tweets: tweets
         })
-        tweets.map(tweet => this.checkEmotion(tweet))
+        tweets.forEach(tweet => this.checkEmotion(tweet))
       })
   };
 
@@ -40,7 +40,10 @@ class Home extends React.Component {
       )
       .header("Content-Type", "application/x-www-form-urlencoded")
       .send(`text=${tweet}`)
-      .end(emotion => this.setState({emotions: [...this.state.emotions, emotion.body]}));
+      .end(emotion => {
+        console.log(emotion, tweet);
+        this.setState({emotions: [...this.state.emotions, emotion.body]})
+      });
   };
 
   render() {
@@ -59,7 +62,7 @@ class Home extends React.Component {
             style={{ maxWidth: "200px" }}
           />
           <Button inverted> Submit </Button>
-          <UserChart emotions={this.state.emotions} tweets={this.state.tweets} />
+          {this.state.emotions.length === this.state.tweets.length && this.state.emotions.length > 0 ? <UserChart emotions={this.state.emotions} tweets={this.state.tweets} /> : null}
         </Form>
       </Container>
     );
