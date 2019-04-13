@@ -29,16 +29,17 @@ class NavBar extends React.Component {
   };
 
   render() {
-    console.log(this.state);
-
+    console.log(this.props)
     return (
       <Container textAlign="center" id="twitter-form">
         <Header as="h2" icon textAlign="center" inverted>
           <Header.Content id="logo">Inner Most</Header.Content>
           <Icon name="user" inverted />
         </Header>
-        <Form onSubmit={this.handleSubmit}>
+
+        <Form>
           <Form.Input
+            disabled={!this.props.signedIn.isSignedIn}
             value={this.state.username}
             onChange={this.handleChange}
             placeholder="type your twitter username"

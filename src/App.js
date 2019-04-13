@@ -127,7 +127,8 @@ class App extends Component {
         </p>
 
         <div id="gradient">
-          <NavBar />
+
+          <NavBar signedIn={this.state} />
           <AnimatedSwitch
             atEnter={bounceTransition.atEnter}
             atLeave={bounceTransition.atLeave}
