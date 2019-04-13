@@ -127,7 +127,7 @@ class App extends Component {
         </p>
 
         <div id="gradient">
-          <NavBar />
+          <Home />
           <AnimatedSwitch
             atEnter={bounceTransition.atEnter}
             atLeave={bounceTransition.atLeave}
@@ -135,7 +135,6 @@ class App extends Component {
             mapStyles={this.mapStyles}
             className="route-wrapper"
           >
-            <Route exact path="/home" component={Home} />
             <Route exact path="/welcome" component={Welcome} />
           </AnimatedSwitch>
         </div>
