@@ -1,6 +1,6 @@
 import { Gradient } from "react-gradient";
 import { spring, AnimatedSwitch } from "react-router-transition";
-import { Route, withRouter } from "react-router-dom";
+import { Route } from "react-router-dom";
 import React, { Component } from 'react';
 import { AppConfig } from 'blockstack'
 import { UserSession } from 'blockstack'
@@ -9,18 +9,19 @@ import './App.css';
 import UserInfo from './UserInfo';
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
+import AppSignedIn from "./components/AppSignedIn";
 import Welcome from "./components/Welcome";
 import { gradients } from "./gradients";
 const blockstack = require('blockstack');
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       person: undefined,
       userSession: new UserSession({ appConfig: new AppConfig(['store_write', 'publish_data'])})
-    }
+    };
 
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleSignOut = this.handleSignOut.bind(this)
@@ -105,8 +106,14 @@ class App extends Component {
     };
     return (
       <div className="App">
+        <Gradient
+          gradients={gradients.disgust} // required
+          property="background"
+          duration={3000}
+          angle="45deg"
+        >
         <header className="App-header">
-          <h1 className="App-title">Blockstack Create React App</h1>
+          <h1 className="App-title">InnerMost</h1>
         </header>
         <p style={{display: this.state.isSignedIn ? 'none' : 'block' }}>
           <button onClick={this.handleSignIn}>
@@ -114,17 +121,11 @@ class App extends Component {
           </button>
         </p>
         <p style={{display: !this.state.isSignedIn ? 'none' : 'block' }}>
-          <UserInfo user={this.state.person} />
           <button onClick={this.handleSignOut}>
             Sign-out
           </button>
         </p>
-        <Gradient
-        gradients={gradients.disgust} // required
-        property="background"
-        duration={3000}
-        angle="45deg"
-      >
+
         <div id="gradient">
           <NavBar />
           <AnimatedSwitch
