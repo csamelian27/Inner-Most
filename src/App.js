@@ -1,18 +1,17 @@
+import { Gradient } from "react-gradient";
+import { spring, AnimatedSwitch } from "react-router-transition";
+import { Route, withRouter } from "react-router-dom";
 import React, { Component } from 'react';
 import { AppConfig } from 'blockstack'
 import { UserSession } from 'blockstack'
 import { lookupProfile } from 'blockstack'
 import './App.css';
 import UserInfo from './UserInfo';
-const blockstack = require('blockstack');
-import "semantic-ui-css/semantic.min.css";
-import { spring, AnimatedSwitch } from "react-router-transition";
-import { Route, withRouter } from "react-router-dom";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Welcome from "./components/Welcome";
-import { Gradient } from "react-gradient";
 import { gradients } from "./gradients";
+const blockstack = require('blockstack');
 
 class App extends Component {
   constructor(props) {
