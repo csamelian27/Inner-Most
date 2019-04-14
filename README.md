@@ -13,9 +13,11 @@ Social media companies like Instagram use this hidden psychology to change their
 
 ## APIS
 Twitter API - Allows Innermost to grab the supplied user’s last 20 tweets, which are then passed into the Emotion Analysis API. To run the program, a client must sign up for Twitter’s Consumer API key and API secret key. These two keys must then be run through:
-
-![alt text](https://drive.google.com/open?id=15rAXG4iwl52FBT6Vkkit2JIOtHFmnHVH)
-
+```ruby
+curl -u 'API key:API secret key' \
+  --data 'grant_type=client_credentials' \
+  'https://api.twitter.com/oauth2/token'
+```
 in the terminal, where a bearer token is returned. This bearer token must be passed into the header of the fetch request because Twitter requires OAuth to view any data.
 
 Emotion Analysis API - Analyzes a paragraph of text against 6 emotional criterion -- Anger, Fear, Sadness, Joy, Disgust, Surprise -- and returns a value for each of those emotions. Each individual emotions is then charted for easy digestibility.
