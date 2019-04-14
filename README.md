@@ -25,4 +25,4 @@ Emotion Analysis API - Analyzes a paragraph of text against 6 emotional criterio
 ## Other Technologies
 Blockstack - A blockchain solution to decentralizing user information and authentication, we are able to more securely protect users from having their private data stolen by security breaches. Innermost has implemented this exciting new technology into its authentication system.
 
-![alt text] https://github.com/csamelian27/Inner-Most/blob/master/public/Screen%20Shot%202019-04-13%20at%208.09.45%20PM.png?raw=true
+![alt text](https://github.com/csamelian27/Inner-Most/blob/master/public/Screen%20Shot%202019-04-13%20at%208.09.45%20PM.png?raw=true)
