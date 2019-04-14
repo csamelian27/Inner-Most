@@ -15,10 +15,8 @@ class UserChart extends React.Component{
   }
 
   componentDidMount(){
-    console.log('ASLKDHFALKJSDHFLAKJSDHFAL', this.props.emotions);
     this.props.emotions.map(emotion => {
-      console.log(emotion);
-      console.log(emotion.emotion_scores);
+
       this.setState({
         anger: Math.round(emotion.emotion_scores.anger * 1000),
         fear: Math.round(emotion.emotion_scores.fear * 1000),
@@ -30,41 +28,12 @@ class UserChart extends React.Component{
     })
   }
 
-  // getEmotions = () => {
-  //   let output = []
-  //   let emotionsArr = ['anger', 'fear', 'sadness', 'joy', 'disgust', 'surprise']
-  //   let emotions = this.props.emotions
-  //   let tweets = this.props.tweets
-  //   for (let idx in emotionsArr) {
-  //     let emotionTweet = {
-  //       name: emotionsArr[idx],
-  //       data: {}
-  //     }
-  //     for (let idx2 in emotions) {
-  //       emotionTweet['data'][tweets[idx2]['created_at']] = emotions[idx2]['emotion_scores'][emotionsArr[idx]]
-  //     }
-  //     output.push(emotionTweet)
-  //   }
-  //   return output
-  // }
-
   render(){
-    console.log('PROPS',this.props);
-    console.log('updated state', this.state);
-
-    // const data = [
-    //   {"name":"Anger", "data": {"Thu Mar 28 03:59:31 +0000 2019": 2, "Thu Mar 28 03:59:31 +0000 2019": 4}},
-    //   {"name":"Fear", "data": {"Thu Mar 28 03:59:31 +0000 2019": 0, "2017-01-02": 3}},
-    //   {"name":"Sadness", "data": {"Thu Mar 28 03:59:31 +0000 2019": 0, "2017-01-02": 3}},
-    //   {"name":"Joy", "data": {"Thu Mar 28 03:59:31 +0000 2019": 0, "2017-01-02": 3}},
-    //   {"name":"Disgust", "data": {"Thu Mar 28 03:59:31 +0000 2019": 0, "2017-01-02": 3}},
-    //   {"name":"Surprise", "data": {"Thu Mar 28 03:59:31 +0000 2019": 0, "2017-01-02": 3}},
-    // ];
     const { anger, fear, sadness, surprise, disgust, joy } = this.state
     return(
-      <div>
-        <PieChart data={[["Anger", anger], ["Fear", fear], ["Sadness", sadness], ["Joy", joy], ["Disgust", disgust], ["Suprise", surprise]]} />
-      </div>
+        <PieChart
+        id='pie-chart'
+        data={[["Anger", anger], ["Fear", fear], ["Sadness", sadness], ["Joy", joy], ["Disgust", disgust], ["Suprise", surprise]]} />
     )
   }
 }

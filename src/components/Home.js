@@ -47,15 +47,16 @@ class Home extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <Container textAlign="center" id="twitter-form">
         <Header as="h2" icon textAlign="center" inverted>
-          <Header.Content id="logo">Inner Most</Header.Content>
+          <Header.Content id="logo">inner most</Header.Content>
           <Icon name="user" inverted />
         </Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
+          disabled={!this.props.signedIn.isSignedIn}
+            id="twitter-input"
             value={this.state.username}
             onChange={this.handleChange}
             placeholder="type your twitter username"

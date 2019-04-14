@@ -2,6 +2,7 @@ import { Gradient } from "react-gradient";
 import { spring, AnimatedSwitch } from "react-router-transition";
 import { Route } from "react-router-dom";
 import React, { Component } from 'react';
+import {Container} from 'semantic-ui-react'
 import { AppConfig } from 'blockstack'
 import { UserSession } from 'blockstack'
 import { lookupProfile } from 'blockstack'
@@ -112,9 +113,6 @@ class App extends Component {
           duration={3000}
           angle="45deg"
         >
-        <header className="App-header">
-          <h1 className="App-title">InnerMost</h1>
-        </header>
         <p style={{display: this.state.isSignedIn ? 'none' : 'block' }}>
           <button onClick={this.handleSignIn}>
             Sign-in with Blockstack

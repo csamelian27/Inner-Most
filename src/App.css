@@ -26,14 +26,18 @@ button {
   color: white;
 }
 
+#pie-chart{
+  margin-top: 2rem;
+}
 
 
-
-
+#twitter-input {
+  text-align: center;
+}
 
 #twitter-form {
   position: relative !important;
-  top: 30vh !important;
+  top: 10vh !important;
 }
 
 .route-wrapper {
