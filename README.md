@@ -22,3 +22,5 @@ in the terminal, where a bearer token is returned. This bearer token must be pas
 
 Emotion Analysis API - Analyzes a paragraph of text against 6 emotional criterion -- Anger, Fear, Sadness, Joy, Disgust, Surprise -- and returns a value for each of those emotions. Each individual emotions is then charted for easy digestibility.
 
+## Other Technologies
+Blockstack - A blockchain solution to decentralizing user information and authentication, we are able to more securely protect users from having their private data stolen by security breaches. Innermost has implemented this exciting new technology into its authentication system.
