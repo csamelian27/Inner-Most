@@ -1,5 +1,12 @@
 # Inner Most
 
+## Contributors
+Shivani Brijmohan
+Jon Freed
+Lizzy Le
+Edwin Lin
+Cassidy Samelian
+
 ## Overview
 How might we improve personal expressions for emotionally distressed twitter users so that they become more aware of when their behavior is becoming negative? With Innermost we plan to analyze a user’s word choices in their media posts, and to provide insights into their emotional state. If the idea of the application doesn’t click immediately, do not worry! The different moving parts required to understand how to use them will fall into place as we move forward.
 
