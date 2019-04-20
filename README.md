@@ -1,6 +1,7 @@
 # Inner Most
 
-## Contributors |
+Contributors |
+------------ | -------------
 Cassidy Samelian - https://github.com/csamelian27 | Jon Freed - https://github.com/jonfreed256
 ------------ | -------------
 Lizzy Le - https://github.com/elizabethlemk | Edwin Lin - https://github.com/edwinlin
