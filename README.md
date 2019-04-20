@@ -24,6 +24,12 @@ https://developer.twitter.com/en/apps - Click 'Create an app' and fill out the f
 
 Emotion Analysis API - Analyzes a paragraph of text against 6 emotional criterion -- Anger, Fear, Sadness, Joy, Disgust, Surprise -- and returns a value for each of those emotions. Each individual emotions is then charted for easy digestibility.
 
+You must enter your own API key into the program to successfully analyze these tweets. We have provided the necessary steps here:
+
+Visit https://rapidapi.com/twinword/api/emotion-analysis/pricing. Subscribe to the BASIC version which is free but will start charging $0.01 per analysis request. Keep in mind that we are pulling up to 20 tweets per user search.
+
+*** Under construction *** (Where to put the api key)
+
 ## Other Technologies
 Blockstack - A blockchain solution to decentralizing user information and authentication, we are able to more securely protect users from having their private data stolen by security breaches. Innermost has implemented this exciting new technology into its authentication system.
 
