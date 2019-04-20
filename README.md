@@ -1,11 +1,11 @@
 # Inner Most
 
 ## Contributors
-Shivani Brijmohan
-Jon Freed
-Lizzy Le
-Edwin Lin
-Cassidy Samelian
+Shivani Brijmohan - https://github.com/sbrij001
+Jon Freed - 
+Lizzy Le - https://github.com/elizabethlemk
+Edwin Lin - https://github.com/edwinlin
+Cassidy Samelian - https://github.com/csamelian27
 
 ## Overview
 How might we improve personal expressions for emotionally distressed twitter users so that they become more aware of when their behavior is becoming negative? With Innermost we plan to analyze a user’s word choices in their media posts, and to provide insights into their emotional state. If the idea of the application doesn’t click immediately, do not worry! The different moving parts required to understand how to use them will fall into place as we move forward.
@@ -26,6 +26,7 @@ curl -u 'API key:API secret key' \
   'https://api.twitter.com/oauth2/token'
 ```
 in the terminal, where a bearer token is returned. This bearer token must be passed into the header of the fetch request because Twitter requires OAuth to view any data.
+https://developer.twitter.com/en/apps - Click 'Create an app' and fill out the form to get your API key and secret key.
 
 Emotion Analysis API - Analyzes a paragraph of text against 6 emotional criterion -- Anger, Fear, Sadness, Joy, Disgust, Surprise -- and returns a value for each of those emotions. Each individual emotions is then charted for easy digestibility.
 
