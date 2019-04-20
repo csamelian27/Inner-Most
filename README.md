@@ -1,14 +1,10 @@
 # Inner Most
 
 ## Contributors |
+Cassidy Samelian - https://github.com/csamelian27 | Jon Freed - https://github.com/jonfreed256
 ------------ | -------------
 Lizzy Le - https://github.com/elizabethlemk | Edwin Lin - https://github.com/edwinlin
 Shivani Brijmohan - https://github.com/sbrij001 | Content in the second column
-
-Cassidy Samelian - https://github.com/csamelian27 | Jon Freed - https://github.com/jonfreed256
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
 
 ## Design Statement
 How might we improve the personal expression of emotionally distressed twitter users so they can recognize when their behavior is becoming negative? 
