@@ -2,9 +2,13 @@
 
 ## Contributors
 Shivani Brijmohan - https://github.com/sbrij001
+
 Jon Freed - 
+
 Lizzy Le - https://github.com/elizabethlemk
+
 Edwin Lin - https://github.com/edwinlin
+
 Cassidy Samelian - https://github.com/csamelian27
 
 ## Overview
