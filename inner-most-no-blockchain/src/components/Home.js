@@ -22,18 +22,12 @@ class Home extends React.Component {
 
   handleSubmit = () => {
     console.log("bob", this.state.username);
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.twitter.com/1.1/statuses/user_timeline/${
-        this.state.username
-      }.json?count=10`,
-      {
-        method: "GET",
-        headers: {
-          Authorization:
-            "Bearer AAAAAAAAAAAAAAAAAAAAAKik9wAAAAAAeEy8mNdChB3cu0SaakLzTJvOiJk%3Dl39cr6lRLidFjMwu4d5LVWHZrw312YT4k08OpCrApjw8NERmvG"
-        }
+    fetch(`${process.env.TWITTER_URL}/${this.state.username}.json?count=10`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.TWITTER_API_KEY}`
       }
-    )
+    })
       .then(resp => resp.json())
       .then(tweets => {
         let userTweets = [];
@@ -63,12 +57,9 @@ class Home extends React.Component {
     var unirest = require("unirest");
 
     unirest
-      .post("https://twinword-emotion-analysis-v1.p.rapidapi.com/analyze/")
+      .post(`${process.env.EMOTION_URL}`)
       .header("X-RapidAPI-Host", "twinword-emotion-analysis-v1.p.rapidapi.com")
-      .header(
-        "X-RapidAPI-Key",
-        "16cc5bd8dcmsh6907259db58b42cp1abd80jsn031467cd6f42"
-      )
+      .header("X-RapidAPI-Key", `${process.env.EMOTION_API_KEY}`)
       .header("Content-Type", "application/x-www-form-urlencoded")
       .send(`text=${tweet}`)
       .end(emotion => {
