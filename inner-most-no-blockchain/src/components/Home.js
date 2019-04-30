@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Container, Header, Icon, Form } from "semantic-ui-react";
 import UserChart from "./UserChart";
+require("dotenv").config();
 // const ToneAnalyzerV3 = require("ibm-watson/tone-analyzer/v3");
 //
 // const toneAnalyzer = new ToneAnalyzerV3({
