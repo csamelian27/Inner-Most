@@ -16,6 +16,7 @@
   "dependencies": {
     "blockstack": "latest",
     "chart.js": "^2.8.0",
+    "dotenv": "^7.0.0",
     "react": "^16.1.1",
     "react-chartkick": "^0.3.0",
     "react-dom": "^16.8.6",
