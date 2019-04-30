@@ -1,32 +1,27 @@
 import { Gradient } from "react-gradient";
 import { spring, AnimatedSwitch } from "react-router-transition";
 import { Route } from "react-router-dom";
-import React, { Component } from 'react';
-import {Container} from 'semantic-ui-react'
-import { AppConfig } from 'blockstack'
-import { UserSession } from 'blockstack'
-import { lookupProfile } from 'blockstack'
-import './App.css';
-import UserInfo from './UserInfo';
+import React, { Component } from "react";
+import { Container } from "semantic-ui-react";
+import { AppConfig } from "blockstack";
+import { UserSession } from "blockstack";
+import { lookupProfile } from "blockstack";
+import "./App.css";
+import UserInfo from "./UserInfo";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import AppSignedIn from "./components/AppSignedIn";
 import Welcome from "./components/Welcome";
 import { gradients } from "./gradients";
-const blockstack = require('blockstack');
+const blockstack = require("blockstack");
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      person: undefined,
-      userSession: new UserSession({ appConfig: new AppConfig(['store_write', 'publish_data'])})
-    };
-
-    this.handleSignIn = this.handleSignIn.bind(this)
-    this.handleSignOut = this.handleSignOut.bind(this)
-  }
+  state = {
+    person: undefined,
+    userSession: new UserSession({
+      appConfig: new AppConfig(["store_write", "publish_data"])
+    })
+  };
 
   componentDidMount = async () => {
     let isSignedIn = await this.checkSignedInStatus();
@@ -34,40 +29,40 @@ class App extends Component {
       this.loadPerson();
     }
 
-    this.setState({ isSignedIn })
-  }
+    this.setState({ isSignedIn });
+  };
 
   checkSignedInStatus = async () => {
-    const { userSession } = this.state
+    const { userSession } = this.state;
 
     if (userSession.isUserSignedIn()) {
       return true;
     } else if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then(async(userData) => {
-        window.location = window.location.origin
-      })
+      userSession.handlePendingSignIn().then(async userData => {
+        window.location = window.location.origin;
+      });
       return false;
     }
-  }
+  };
 
   loadPerson = async () => {
-    const { userSession } = this.state
-    let username = userSession.loadUserData()
+    const { userSession } = this.state;
+    let username = userSession.loadUserData();
 
-    await lookupProfile(username).then((person) => {
-      this.setState({ person })
-    })
-  }
+    await lookupProfile(username).then(person => {
+      this.setState({ person });
+    });
+  };
 
-  handleSignIn(event) {
+  handleSignIn = event => {
     event.preventDefault();
-    blockstack.redirectToSignIn()
-  }
+    blockstack.redirectToSignIn();
+  };
 
-  handleSignOut(event) {
+  handleSignOut = event => {
     event.preventDefault();
-    blockstack.signUserOut(window.location.href)
-  }
+    blockstack.signUserOut(window.location.href);
+  };
 
   // we need to map the `scale` prop we define below
   // to the transform style property
@@ -108,38 +103,36 @@ class App extends Component {
     return (
       <div className="App">
         <Gradient
-          gradients={gradients.disgust} // required
+          gradients={gradients.default} // required
           property="background"
           duration={3000}
           angle="45deg"
         >
-        <p style={{display: this.state.isSignedIn ? 'none' : 'block' }}>
-          <button onClick={this.handleSignIn}>
-            Sign-in with Blockstack
-          </button>
-        </p>
-        <p style={{display: !this.state.isSignedIn ? 'none' : 'block' }}>
-          <button onClick={this.handleSignOut}>
-            Sign-out
-          </button>
-        </p>
+          <p>
+            {this.state.isSignedIn ? (
+              <button onClick={this.handleSignOut}>Sign-out</button>
+            ) : (
+              <button onClick={this.handleSignIn}>
+                Sign-in with Blockstack
+              </button>
+            )}
+          </p>
 
-        <div id="gradient">
-
-          <Home signedIn={this.state} />
-          <AnimatedSwitch
-            atEnter={bounceTransition.atEnter}
-            atLeave={bounceTransition.atLeave}
-            atActive={bounceTransition.atActive}
-            mapStyles={this.mapStyles}
-            className="route-wrapper"
-          >
-            <Route exact path="/welcome" component={Welcome} />
-          </AnimatedSwitch>
-        </div>
-      </Gradient>
+          <div id="gradient">
+            <Home signedIn={this.state} />
+            <AnimatedSwitch
+              atEnter={bounceTransition.atEnter}
+              atLeave={bounceTransition.atLeave}
+              atActive={bounceTransition.atActive}
+              mapStyles={this.mapStyles}
+              className="route-wrapper"
+            >
+              <Route exact path="/welcome" component={Welcome} />
+            </AnimatedSwitch>
+          </div>
+        </Gradient>
       </div>
-    )
+    );
   }
 }
 
