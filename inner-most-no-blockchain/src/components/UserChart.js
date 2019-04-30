@@ -1,8 +1,7 @@
 import React from "react";
+import { Segment } from "semantic-ui-react";
 import Chart from "chart.js";
 import ReactChartkick, { LineChart, PieChart } from "react-chartkick";
-<script src="https://www.gstatic.com/charts/loader.js" />;
-ReactChartkick.addAdapter(Chart);
 
 class UserChart extends React.Component {
   state = {
@@ -13,6 +12,30 @@ class UserChart extends React.Component {
     joy: 0,
     disgust: 0
   };
+
+  componentDidMount() {
+    this.props.emotions.map(emotion => {
+      this.setState({
+        anger: (this.state.anger += Math.round(
+          emotion.emotion_scores.anger * 100
+        )),
+        fear: (this.state.fear += Math.round(
+          emotion.emotion_scores.fear * 100
+        )),
+        sadness: (this.state.sadness += Math.round(
+          emotion.emotion_scores.sadness * 100
+        )),
+        surprise: (this.state.surprise += Math.round(
+          emotion.emotion_scores.surprise * 100
+        )),
+        joy: (this.state.joy += Math.round(emotion.emotion_scores.joy * 100)),
+        disgust: (this.state.disgust += Math.round(
+          emotion.emotion_scores.disgust * 100
+        ))
+      });
+    });
+  }
+
   getEmotions = () => {
     let output = [];
     let emotionsArr = [
@@ -39,20 +62,8 @@ class UserChart extends React.Component {
     return output;
   };
 
-  componentDidMount() {
-    this.props.emotions.map(emotion => {
-      this.setState({
-        anger: Math.round(emotion.emotion_scores.anger * 1000),
-        fear: Math.round(emotion.emotion_scores.fear * 1000),
-        sadness: Math.round(emotion.emotion_scores.sadness * 1000),
-        surprise: Math.round(emotion.emotion_scores.surprise * 1000),
-        joy: Math.round(emotion.emotion_scores.joy * 1000),
-        disgust: Math.round(emotion.emotion_scores.disgust * 1000)
-      });
-    });
-  }
-
   render() {
+    console.log("EMOTIONS", this.state);
     const data = [
       {
         name: "Anger",
@@ -85,8 +96,11 @@ class UserChart extends React.Component {
     const { anger, fear, sadness, surprise, disgust, joy } = this.state;
     return (
       <div>
+        {" "}
         <PieChart
           id="pie-chart"
+          options={{ events: ["click"] }}
+          onClick={event => console.log(event.target)}
           data={[
             ["Anger", anger],
             ["Fear", fear],
@@ -96,14 +110,16 @@ class UserChart extends React.Component {
             ["Suprise", surprise]
           ]}
         />
-        <LineChart
-          data={
-            this.props.tweets.length === this.props.emotions.length &&
-            this.props.emotions.length > 0
-              ? this.getEmotions()
-              : data
-          }
-        />
+        <Segment>
+          <LineChart
+            data={
+              this.props.tweets.length === this.props.emotions.length &&
+              this.props.emotions.length > 0
+                ? this.getEmotions()
+                : data
+            }
+          />
+        </Segment>
       </div>
     );
   }
