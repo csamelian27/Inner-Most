@@ -2,13 +2,6 @@ import React from "react";
 import { Button, Container, Header, Icon, Form } from "semantic-ui-react";
 import UserChart from "./UserChart";
 require("dotenv").config();
-// const ToneAnalyzerV3 = require("ibm-watson/tone-analyzer/v3");
-//
-// const toneAnalyzer = new ToneAnalyzerV3({
-//   version: "2017-09-21",
-//   iam_apikey: "njg1mJlIteAuZ1Gxq5w_YAXRjrygQ_5AICWmnkKptMKX",
-//   url: "https://gateway-wdc.watsonplatform.net/tone-analyzer/api"
-// });
 
 class Home extends React.Component {
   state = {
@@ -41,22 +34,7 @@ class Home extends React.Component {
   };
 
   checkEmotion = tweet => {
-    // toneAnalyzer.tone(
-    //   {
-    //     tone_input: tweet,
-    //     content_type: "text/plain"
-    //   },
-    //   function(err, tone) {
-    //     if (err) {
-    //       console.log(err);
-    //     } else {
-    //       console.log(JSON.stringify(tone, null, 2));
-    //     }
-    //   }
-    // );
-
-    var unirest = require("unirest");
-
+    let unirest = require("unirest");
     unirest
       .post(`${process.env.EMOTION_URL}`)
       .header("X-RapidAPI-Host", "twinword-emotion-analysis-v1.p.rapidapi.com")
