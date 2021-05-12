@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "electron": "^5.0.0",
     "ibm-watson": "^4.1.0",
     "react": "^16.8.6",
