@@ -9,7 +9,7 @@
     "eject": "react-app-rewired eject"
   },
   "devDependencies": {
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "opn": "^4.0.2",
     "react-app-rewired": "^2.0.1"
   },
